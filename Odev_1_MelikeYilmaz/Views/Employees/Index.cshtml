@@ -51,27 +51,10 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Title)
                                 </td>                                
-                                <td>
-                                  @*   <form method="post" asp-controller="Orders" asp-action="List">
-                                        <input type="hidden" name="EmployeeId" value="@item.EmployeeId">
-                                        <button type="submit">Order Details</button>
-                                    </form> *@
-                                  @*   <form method="post" asp-controller="Orders" asp-action="List">
-                                        <input type="text" name="EmployeeId" value="@item.EmployeeId" style="display: none;">
-                                        <button type="submit">Order Details - @item.EmployeeId</button>
-                                    </form>
-                                *@
-                                    @* <form method="get" asp-controller="Orders" asp-action="List">
-                                        <input type="hidden" name="id" value="@item.EmployeeId"> <!-- EmployeeId'yi hidden input ile ekleyin -->
-                                        <button type="submit">Order Details - @item.EmployeeId</button>
-                                    </form> *@
+                                <td>                              
                                     <form method="get" asp-controller="Orders" asp-action="List">
                                         <button class="btn btn-info" type="submit" name="EmployeeId" value="@item.EmployeeId">Order Details</button>
                                     </form>
-
-
-
-                                    @* <a asp-controller="Orders" asp-action="List" asp-route-id="@item.EmployeeId">Order Details</a> *@
                                 </td>
                             </tr>
                         }
