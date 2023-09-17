@@ -6,7 +6,7 @@
 <html lang="en">
 
 @await Html.PartialAsync("/Views/Shared/_HeadPartial.cshtml")
-
+@await RenderSectionAsync("Styles", required: false)
 <body>
     <div class="container-scroller">
 
