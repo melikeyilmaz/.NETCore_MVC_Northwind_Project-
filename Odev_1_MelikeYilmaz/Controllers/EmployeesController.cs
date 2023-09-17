@@ -9,11 +9,11 @@ using Odev_1_MelikeYilmaz.Models;
 
 namespace Odev_1_MelikeYilmaz.Controllers
 {
-    public class EmployeeController : Controller
+    public class EmployeesController : Controller
     {
         private readonly NorthwindDbContext _context;
 
-        public EmployeeController(NorthwindDbContext context)
+        public EmployeesController(NorthwindDbContext context)
         {
             _context = context;
         }
@@ -67,6 +67,25 @@ namespace Odev_1_MelikeYilmaz.Controllers
             ViewData["ReportsTo"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeId", employee.ReportsTo);
             return View(employee);
         }
+
+
+        //public IActionResult OrderList(int employeeId)
+        //{
+        //    // Orders ve Employees tablolarını birleştirerek siparişleri alın
+        //    var orders = (from o in _context.Orders
+        //                  join e in _context.Employees on o.EmployeeId equals e.EmployeeId
+        //                  where o.EmployeeId == employeeId
+        //                  select new Order
+        //                  {
+        //                      OrderId = o.OrderId,
+        //                      OrderDate = o.OrderDate,
+        //                      ShipCountry = o.ShipCountry
+        //                  }).ToList();
+
+        //    return View(orders);
+        //}
+
+
 
         // GET: Employee/Edit/5
         public async Task<IActionResult> Edit(int? id)

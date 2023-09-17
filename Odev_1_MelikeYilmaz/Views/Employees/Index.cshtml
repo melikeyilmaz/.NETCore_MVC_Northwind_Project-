@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_SiteLayout.cshtml";
 }
 
+
 @section Styles{
     <style>
         .btn {
@@ -18,7 +19,7 @@
         <div class="card-body">
             <h4 class="card-title">Employees</h4>
             <p class="card-description">
-                <a href="/Employee/Create" class="btn btn-success">Create New</a>                
+                <a href="/Employees/Create" class="btn btn-success">Create New</a>                
             </p>
             <div class="table-responsive pt-3">
                 <table class="table table-bordered">
@@ -32,7 +33,7 @@
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.Title)
-                            </th>
+                            </th>                           
                             <th></th>
                         </tr>
                     </thead>
@@ -49,9 +50,28 @@
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Title)
-                                </td>
-                                <td>                                   
-                                    <a asp-action="Details" asp-route-id="@item.EmployeeId">Details</a> 
+                                </td>                                
+                                <td>
+                                  @*   <form method="post" asp-controller="Orders" asp-action="List">
+                                        <input type="hidden" name="EmployeeId" value="@item.EmployeeId">
+                                        <button type="submit">Order Details</button>
+                                    </form> *@
+                                  @*   <form method="post" asp-controller="Orders" asp-action="List">
+                                        <input type="text" name="EmployeeId" value="@item.EmployeeId" style="display: none;">
+                                        <button type="submit">Order Details - @item.EmployeeId</button>
+                                    </form>
+                                *@
+                                    @* <form method="get" asp-controller="Orders" asp-action="List">
+                                        <input type="hidden" name="id" value="@item.EmployeeId"> <!-- EmployeeId'yi hidden input ile ekleyin -->
+                                        <button type="submit">Order Details - @item.EmployeeId</button>
+                                    </form> *@
+                                    <form method="get" asp-controller="Orders" asp-action="List">
+                                        <button class="btn btn-info" type="submit" name="EmployeeId" value="@item.EmployeeId">Order Details</button>
+                                    </form>
+
+
+
+                                    @* <a asp-controller="Orders" asp-action="List" asp-route-id="@item.EmployeeId">Order Details</a> *@
                                 </td>
                             </tr>
                         }
