@@ -18,21 +18,27 @@ namespace Odev_1_MelikeYilmaz.Controllers
             _context = context;
         }
 
-       
+
         public async Task<IActionResult> Index()
         {
-            var northwindDbContext = _context.Employees.Include(e => e.ReportsToNavigation);
-            return View(await northwindDbContext.ToListAsync());
-        }       
+            //var northwindDbContext = _context.Employees.Include(e => e.ReportsToNavigation);
+            //return View(await northwindDbContext.ToListAsync());
+            var northwindDbContext = _context.Employees
+    .Include(e => e.ReportsToNavigation)
+    .OrderByDescending(e => e.EmployeeId)
+    .ToList();
 
-      
+            return View(northwindDbContext);
+        }
+
+
         public IActionResult Create()
         {
             ViewData["ReportsTo"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeId");
             return View();
         }
 
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("EmployeeId,LastName,FirstName,Title,TitleOfCourtesy,BirthDate,HireDate,Address,City,Region,PostalCode,Country,HomePhone,Extension,Photo,Notes,ReportsTo,PhotoPath")] Employee employee)
@@ -46,6 +52,6 @@ namespace Odev_1_MelikeYilmaz.Controllers
             ViewData["ReportsTo"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeId", employee.ReportsTo);
             return View(employee);
         }
-       
+
     }
 }
