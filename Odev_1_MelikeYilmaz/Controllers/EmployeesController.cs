@@ -20,9 +20,7 @@ namespace Odev_1_MelikeYilmaz.Controllers
 
 
         public async Task<IActionResult> Index()
-        {
-            //var northwindDbContext = _context.Employees.Include(e => e.ReportsToNavigation);
-            //return View(await northwindDbContext.ToListAsync());
+        {           
             var northwindDbContext = _context.Employees
     .Include(e => e.ReportsToNavigation)
     .OrderByDescending(e => e.EmployeeId)
