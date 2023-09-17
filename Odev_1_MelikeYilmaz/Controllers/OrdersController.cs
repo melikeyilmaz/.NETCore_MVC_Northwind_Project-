@@ -17,15 +17,14 @@ namespace Odev_1_MelikeYilmaz.Controllers
         {
             _context = context;
         }
+       
+        public async Task<IActionResult> Index()
+        {
+            var northwindDbContext = _context.Orders.Include(o => o.Customer).Include(o => o.Employee).Include(o => o.ShipViaNavigation);
+            return View(await northwindDbContext.ToListAsync());
+        }
 
-        // GET: Order
-        //public async Task<IActionResult> Index()
-        //{
-        //    var northwindDbContext = _context.Orders.Include(o => o.Customer).Include(o => o.Employee).Include(o => o.ShipViaNavigation);
-        //    return View(await northwindDbContext.ToListAsync());
-        //}
 
-        
         [HttpGet]
         public IActionResult List(int EmployeeId)
         {
